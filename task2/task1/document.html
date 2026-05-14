@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Manager</title>
+    <style>
+        :root {
+            --bg: #f4f6f9;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --primary: #2563eb;
+            --danger: #dc2626;
+            --success: #16a34a;
+            --warning: #ca8a04;
+        }
+        body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 20px; background: var(--bg); color: var(--text); }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 24px; }
+        .section { background: var(--card); padding: 16px; margin-bottom: 16px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        h3 { margin: 0 0 12px 0; font-size: 1.1rem; }
+        
+        input { padding: 8px 10px; margin-right: 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; }
+        button { padding: 8px 14px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; transition: 0.2s; }
+        button:hover { opacity: 0.9; }
+        button.btn-danger { background: var(--danger); }
+        button.btn-sm { padding: 4px 8px; font-size: 12px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+        th { background: #f8fafc; font-weight: 600; }
+        
+        .msg-error, .err, .text-err { color: var(--danger); margin-top: 8px; font-size: 14px; }
+        .ok, .text-ok { color: var(--success); margin-top: 8px; font-size: 14px; }
+        
+        .stock-badge { padding: 2px 8px; border-radius: 12px; font-size: 12px; background: #dcfce7; color: #14532d; }
+        .stock-badge.low { background: #fef9c3; color: #713f12; }
+        .stock-badge.empty { background: #fee2e2; color: #991b1b; }
+        .table-empty { text-align: center; color: #94a3b8; font-style: italic; }
+        
+        .list-row, .apply-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border); }
+        .meta-key { font-weight: 600; margin-right: 4px; }
+        .item-name { font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛍️ Store Manager</h1>
+
+        <div class="section">
+            <h3>Seed Data</h3>
+            <button id="prdBtn">Add Sample Products</button>
+            <button id="ordBtn">Add Sample Orders</button>
+        </div>
+
+        <div class="section">
+            <h3>Add Order</h3>
+            <input type="text" id="orderName" placeholder="Product name">
+            <input type="number" id="orderQty" value="1" min="1" style="width: 60px;">
+            <button id="addOrderBtn">Place Order</button>
+            <div id="orderStatus"></div>
+        </div>
+
+        <div class="section">
+            <h3>Search Product</h3>
+            <input type="text" id="prdName" placeholder="Product name">
+            <button id="searchBtn">Search</button>
+            <div id="searchResult"></div>
+        </div>
+
+        <div class="section">
+            <h3>Apply Orders</h3>
+            <button id="applyOrdersBtn">Apply all orders to inventory</button>
+            <div id="applyResults"></div>
+        </div>
+
+        <div class="section">
+            <h3>Products</h3>
+            <table>
+                <thead><tr><th>Name</th><th>ID</th><th>Price</th><th>Color</th><th>Material</th><th>Stock</th></tr></thead>
+                <tbody id="productsTbody"></tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Orders</h3>
+            <table>
+                <thead><tr><th>Name</th><th>ID</th><th>Price</th><th>Color</th><th>Material</th><th>Qty</th><th>Action</th></tr></thead>
+                <tbody id="ordersTbody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="idb.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
